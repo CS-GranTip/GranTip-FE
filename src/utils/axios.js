@@ -68,9 +68,9 @@ api.interceptors.response.use(
         processQueue(refreshErr, null);
         localStorage.removeItem("accessToken");
 
-        // ✅ 세션 만료 알림 추가
+        // 세션 만료 알림 추가
         alert("세션이 만료되었습니다. 다시 로그인 해주세요.");
-
+        window.location.reload(true);
         window.location.href = "/login";
         return Promise.reject(refreshErr);
       } finally {

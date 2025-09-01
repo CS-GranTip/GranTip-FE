@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import ScholarshipCalendar from "../components/layout/ScholarshipCalendar";
+import ScholarshipCalendar from "../components/Modal/ScholarshipCalendar";
 import "./MyPage.css";
 import { useNavigate } from "react-router-dom";
 import api from "../utils/axios";
 import DeleteUser from "../components/Modal/DeleteUser";
-const MyPage = () => {
+const MyPage = ({ setIsLogged }) => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
   const [likeInfo, setLikeInfo] = useState([]);
@@ -22,6 +22,8 @@ const MyPage = () => {
           setLikeInfo(likeRes.data.result.content);
         } else {
           alert("유저 정보를 찾을 수 없습니다.");
+          setIsLogged(false);
+          navigate("/");
         }
       } catch (error) {
         alert("서버 오류.");
@@ -93,13 +95,14 @@ const MyPage = () => {
           <ScholarshipCalendar subscribedScholarships={likeInfo} />
         </div>
       </div>
-      <div className="password-edit" onClick={() => setDeleteUser(true)}>
+      <div className="user-delete" onClick={() => setDeleteUser(true)}>
         회원탈퇴
       </div>
       {deleteUser && (
         <DeleteUser
           username={userInfo.username}
           onClose={() => setDeleteUser(false)}
+          setIsLogged={setIsLogged}
         />
       )}
     </div>

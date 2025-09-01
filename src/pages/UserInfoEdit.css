@@ -186,13 +186,13 @@
 
 /* 비밀번호 수정 텍스트 */
 .password-edit {
-  width: 70%;
   color: #0000009a;
   font-size: 12px;
   text-decoration: underline;
   text-align: right;
   margin-top: 10px;
   cursor: pointer;
+  margin-right: 105px;
 }
 .select-btn {
   width: 64px;

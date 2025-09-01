@@ -188,3 +188,12 @@ body {
   background: #fff;
   margin-bottom: 20px;
 }
+.user-delete {
+  width: 70%;
+  color: #0000009a;
+  font-size: 12px;
+  text-decoration: underline;
+  text-align: right;
+  margin-top: 10px;
+  cursor: pointer;
+}

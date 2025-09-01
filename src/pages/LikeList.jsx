@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./LikeList.css";
 import ScholarshipTip from "../components/scholarship/ScholarShipTip";
 import api from "../utils/axios";
-const LikeList = ({ userName }) => {
+const LikeList = () => {
   const [likeScholarships, setLikeScholarships] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {

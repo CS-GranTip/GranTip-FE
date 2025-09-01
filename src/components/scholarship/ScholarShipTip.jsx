@@ -20,7 +20,7 @@ const ScholarshipTip = () => {
         }
       } catch (err) {
         console.error(err);
-        alert("서버 에러 발생");
+        alert("장학금 추천 에러");
       }
     };
 

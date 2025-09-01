@@ -1,7 +1,6 @@
 import ToggleButton from "../hooks/ToggleButton";
 import highSchools from "../data/highSchools_labeled.js";
 import universityList from "../data/universityList.js";
-import gradeList from "../data/gradeList.js";
 import SelectListModal from "../components/Modal/SelectListModal.jsx";
 import RegionSelectModal from "../components/Modal/RegionSelectModal.jsx";
 import "./UserInfoEdit.css";
@@ -9,7 +8,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import api from "../utils/axios.js";
 import { useNavigate } from "react-router-dom";
-import DeleteUser from "../components/Modal/DeleteUser.jsx";
 const UserInfoEdit = ({ username }) => {
   const nav = useNavigate();
   const [userInfo, setUserInfo] = useState([]);
@@ -222,7 +220,9 @@ const UserInfoEdit = ({ username }) => {
       console.log(err);
     }
   };
-
+  const onClickUpdatePW = () => {
+    nav("/update-password");
+  };
   return (
     <div className="user-info-edit-container">
       <div className="edit-header">
@@ -619,6 +619,9 @@ const UserInfoEdit = ({ username }) => {
         <button className="check-btn" onClick={handleSubmit}>
           확인
         </button>
+      </div>
+      <div className="password-edit" onClick={onClickUpdatePW}>
+        비밀번호 변경
       </div>
     </div>
   );

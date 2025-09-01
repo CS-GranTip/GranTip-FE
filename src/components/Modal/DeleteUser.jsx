@@ -1,13 +1,23 @@
 import { useState } from "react";
 import api from "../../utils/axios";
 import "./SelectListModal.css";
-const DeleteUser = ({ username, onClose }) => {
+import { useNavigate } from "react-router-dom";
+const DeleteUser = ({ username, onClose, setIsLogged }) => {
+  const nav = useNavigate();
   const [inputValue, setInputValue] = useState("");
   const handleDelete = async () => {
     try {
       const res = await api.delete("/user");
+      if (res.data.success) {
+        alert("정상적으로 회원탈퇴 되었습니다.");
+        nav("/");
+        setIsLogged(false);
+      } else {
+        alert("일시적 오류");
+      }
     } catch (err) {
       console.log(err);
+      alert("유저삭제 서버오류");
     }
   };
   const handleBtn = (e) => {

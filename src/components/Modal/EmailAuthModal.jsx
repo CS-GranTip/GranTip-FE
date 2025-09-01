@@ -41,7 +41,7 @@ const EmailAuthModal = ({ email, onVerified, onClose }) => {
         alert("인증 실패");
       }
     } catch {
-      alert("서버 오류");
+      alert("이메일 인증 서버 오류");
     }
   };
 

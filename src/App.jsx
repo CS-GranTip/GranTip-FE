@@ -17,11 +17,12 @@ import Footer from "./components/layout/Footer";
 import ScrollToTop from "./utils/ScrollToTop";
 import LikeList from "./pages/LikeList";
 import TipMore from "./pages/TipMore.jsx";
+import EditPW from "./components/Modal/EditPW.jsx";
 function AppContent() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inputText, setInputText] = useState("");
   const location = useLocation();
-  const hideHeaderRoutes = ["/login", "/signup"];
+  const hideHeaderRoutes = ["/login", "/signup", "/update-password"];
   const hideHeader = hideHeaderRoutes.includes(location.pathname);
 
   useEffect(() => {
@@ -74,7 +75,7 @@ function AppContent() {
             element={
               <PageTransitionWrapper>
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <MyPage />
+                  <MyPage setIsLoggedIn={setIsLoggedIn} />
                 </ProtectedRoute>
               </PageTransitionWrapper>
             }
@@ -126,7 +127,16 @@ function AppContent() {
               </PageTransitionWrapper>
             }
           />
+          <Route
+            path="/update-password"
+            element={
+              <PageTransitionWrapper>
+                <EditPW />
+              </PageTransitionWrapper>
+            }
+          />
         </Routes>
+
         {!hideHeader && (
           <PageTransitionWrapper>
             <Footer />
