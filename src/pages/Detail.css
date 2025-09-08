@@ -1,0 +1,236 @@
+.detail {
+  width: 900px;
+  margin: 50px auto;
+  padding-bottom: 1px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0px 10px 15px 0px rgba(0, 104, 255, 0.1);
+  user-select: none;
+}
+.detail-h1 {
+  padding-top: 23px;
+  color: #0068ff;
+  text-align: center;
+  font-family: Inter;
+}
+.detail-wrapper {
+  width: 650px;
+  height: 100px;
+  margin: 30px auto 33px auto;
+  padding: 15px 40px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 1px 2px 30px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+.detail-section {
+  width: 230px;
+  height: 100px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.detail-name {
+  color: rgba(0, 0, 0, 0.65);
+  font-family: Inter;
+  font-size: 23px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.detail-wrapper-info {
+  color: rgba(0, 0, 0, 0.29);
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.info-between-section {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 125px;
+}
+.detail-info-wrapper {
+  width: 313px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 1px 2px 30px 0px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding-top: 14px;
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+}
+.detail h3 {
+  color: #0068ff;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 650;
+  line-height: normal;
+  margin-left: 54px;
+}
+.info-between-section h3 {
+  margin: 0;
+}
+.detail-info-card {
+  margin: 0 auto;
+  margin-top: 16px;
+  width: 230px;
+  height: 50px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.detail h4 {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 1px;
+}
+.card-info {
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 400;
+  word-break: keep-all;
+}
+.detail-more-wrapper,
+.detail-more-wrapper-bottom,
+.detail-more-wrapper-url {
+  margin: 0 auto;
+  margin-bottom: 40px;
+  width: 650px;
+  padding: 20px 0 9px 0;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 1px 2px 30px 0px rgba(0, 0, 0, 0.1);
+}
+
+.more-info-wrapper,
+.more-info-wrapper-url {
+  width: 567px;
+  margin: 8px auto 21px auto;
+  padding: 15px 40px 10px 40px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.more-info-wrapper-url {
+  padding: 5px 0;
+  cursor: pointer;
+}
+.more-info-dot {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Inter;
+  word-break: keep-all;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.detail h2 {
+  margin-left: 142px;
+  margin-bottom: 10px;
+  color: #0068ff;
+  font-family: Inter;
+  font-size: 25px;
+  font-weight: 700;
+}
+.more-info {
+  width: 567px;
+  margin: 0 auto;
+  margin-top: 8px;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.note-info {
+  height: 13px;
+  color: rgba(0, 0, 0, 0.52);
+  text-align: right;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 300;
+  margin: 5px 55px 17px 0;
+}
+.more-info {
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+}
+.detail-more-wrapper-bottom .more-info-wrapper {
+  margin-bottom: 0;
+}
+.detail h5 {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.title-with-heart {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* h1 중앙 정렬 */
+  align-items: center;
+}
+
+.heart-container {
+  position: absolute;
+  right: 15%;
+  top: 43%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.heart-icon {
+  color: white;
+  filter: drop-shadow(1px 2px 5px rgba(0, 0, 0, 0.3));
+  font-size: 30px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.heart-icon.liked {
+  color: red;
+  filter: none;
+}
+.heart-icon.pop {
+  animation: pop-heart 0.3s ease;
+}
+
+@keyframes pop-heart {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.heart-info {
+  margin-top: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.5);
+}

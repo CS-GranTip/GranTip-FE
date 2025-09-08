@@ -1,0 +1,112 @@
+/* 루트 컨테이너 (필요시 유연하게 조정) */
+.scholar-calendar-root {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* 커스텀 툴바 */
+.calender-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 0 50px;
+  color: #0068ff;
+  user-select: none;
+}
+.calender {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  border: 1px solid #aacdff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.calender-btn,
+.calender-btn-n {
+  width: 20px;
+  height: 20px;
+  border-radius: 15px;
+  user-select: none;
+}
+.calender-btn:focus,
+.calender-btn-n:focus {
+  outline: none;
+}
+
+/* FullCalendar 기본 숨김 */
+.fc {
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+  box-shadow: 0px 5px 10px rgba(0, 104, 255, 0.05);
+  transition: height 0.5s ease-in-out;
+}
+.fc-toolbar {
+  display: none;
+}
+.fc-daygrid-day {
+  border: none;
+  padding: 2px;
+}
+.fc-day-other {
+  background-color: #f5f5f5 !important;
+}
+
+/* 1) .scholar-bar를 block으로 바꾸고, 셀 전체 너비를 차지하도록 */
+.scholar-bar {
+  display: flex !important; /* block → flex */
+  align-items: center !important; /* 수직 중앙 정렬 */
+  justify-content: center !important; /* 수평 중앙 정렬 */
+  height: 18px;
+  background: rgb(252, 254, 255);
+  border: 1px solid #c8deff;
+  border-radius: 20px;
+  height: 16px;
+  line-height: 16px;
+  cursor: pointer;
+  overflow: hidden; /* 넘치는 텍스트 숨김 */
+  text-align: center;
+  padding-top: 2px !important;
+  transition: 0.3s;
+}
+
+/* 2) 내부 .ellipsed 스팬에도 꼭 폭 100% 지정 */
+.ellipsed {
+  display: block !important;
+  width: 100% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.scholar-bar:hover {
+  background-color: #f3f3f3;
+  border: none;
+}
+/* 1) 이벤트 링크(<a>) 자체의 배경·보더 제거 */
+.fc .fc-daygrid-event-harness .fc-event {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* 2) 선택되었을 때 붙는 추가 클래스 제거 */
+.fc .fc-daygrid-event.fc-event-selected {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 3) fc-event-main-frame 에도 혹시 남아 있는 배경 제거 */
+.fc .fc-event-main-frame {
+  background: transparent !important;
+  border: none !important;
+}
+.scholar-bar,
+.ellipsed {
+  color: #0068ff !important; /* 원하는 텍스트 색 */
+}

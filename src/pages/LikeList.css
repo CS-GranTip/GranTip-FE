@@ -1,0 +1,32 @@
+.likeList h1 {
+  margin-bottom: 10px;
+}
+.likeList .search-wrapper {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.search-wrapper .go-back,
+.go-back-like {
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  text-align: right;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  margin-bottom: 3px;
+}
+.go-back:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+.card-wrapper-fa {
+  display: flex;
+  justify-content: space-between;
+}
+.card-score {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0066ffc3;
+}
+.go-back-like {
+  margin-right: 60px;
+}

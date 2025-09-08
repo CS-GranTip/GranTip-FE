@@ -1,0 +1,26 @@
+.banner-wrapper {
+  width: 100%;
+  height: 160px;
+  background: rgb(234, 233, 233);
+}
+.banner-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  height: 160px;
+  box-sizing: border-box;
+  padding: 3% 0;
+  /* border: 1px solid black; */
+}
+.scholarship {
+  color: #1e75f2;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 700;
+}
+.info {
+  margin-top: 7px;
+  color: rgba(0, 0, 0, 0.49);
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 700;
+}

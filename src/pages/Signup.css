@@ -1,0 +1,197 @@
+.signup-page {
+  width: 600px;
+  height: auto;
+  border-radius: 20px;
+  padding: 50px 67px;
+  border: 1px solid #aacdff;
+  background: #fff;
+  box-shadow: 7px 7px 39px 0px rgba(0, 104, 255, 0.25);
+}
+.signup-email,
+.signup-user,
+.signup-pass,
+.signup-current-school,
+.signup-high-school,
+.signup-resident-address,
+.signup-address,
+.signup-phone {
+  margin-top: 28px;
+  color: #797979;
+  font-family: ABeeZee;
+  font-size: 16px;
+}
+.signup-current-school {
+  margin-top: 20px;
+}
+.signup-radio {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  margin: 40px 20px 0 20px;
+}
+.signup-radio label {
+  margin: 0 10px;
+}
+.signup-next-btn,
+.signup-btn {
+  margin-top: 20px;
+  width: 470px;
+  height: 75px;
+  border-radius: 20px;
+  border: 1.5px solid #0068ff;
+  background: #fff;
+  font-size: 16px;
+  color: #0068ff;
+  transition: 0.3s ease;
+}
+.signup-next-btn.active,
+.signup-btn.active {
+  border: 1.5px solid #fff;
+  background: #0068ff;
+  color: #fff;
+  cursor: pointer;
+}
+.signup-email-input,
+.signup-pass-input,
+.signup-user-input {
+  width: 450px;
+  height: 50px;
+  border: 0;
+  border-bottom: solid 1px #797979;
+  font-size: 20px;
+  padding-top: 18px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+.address-info {
+  color: #797979;
+  font-family: ABeeZee;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-left: 5px;
+  padding-top: 2px;
+}
+.signup-input {
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.signup-input.fade-out {
+  opacity: 0;
+}
+.signup-current-school-input,
+.signup-high-school-input,
+.signup-resident-address-input,
+.signup-address-input,
+.signup-phone-input {
+  width: 450px;
+  height: 40px;
+  border: 0;
+  border-bottom: solid 1px #797979;
+  font-size: 20px;
+  padding-top: 8px;
+  padding-left: 5px;
+  cursor: pointer;
+  color: #686868;
+}
+input:focus::placeholder {
+  color: transparent;
+}
+.signup-resident-address-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.signup-current-school-input.active,
+.signup-high-school-input.active,
+.signup-address-input.active,
+.signup-phone-input {
+  color: #000000;
+}
+.signup-phone-input:focus {
+  outline: none;
+  border-bottom: solid 1px #0068ff;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 500px;
+  height: 600px;
+  background: #fff;
+  margin: 160px auto;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.address-search-btn {
+  padding: 8px 4px;
+  outline: none;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  margin-left: auto;
+  border: solid 1px rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+.address-search-btn:hover {
+  background-color: #cdcdcd;
+}
+.selected-address {
+  color: black;
+}
+
+.signup-email-input {
+  width: 450px; /* 기존 유지 */
+  flex-shrink: 0;
+}
+
+.email-auth-btn {
+  padding: 10px 14px;
+  height: 42px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #0068ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transform: translateX(-100px);
+}
+
+.email-auth-btn:disabled {
+  border-radius: 10px;
+  border: 1.5px solid #b2b2b2;
+  background: none;
+  color: #b2b2b2;
+  transition: 0.3s ease-out;
+  cursor: not-allowed;
+}
+.signup-email-row {
+  display: flex;
+  justify-content: space-between;
+}
+.search-none {
+  margin-top: 40px;
+}
+.school-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.signup-dropdown-select,
+.signup-dropdown-select:focus {
+  border: none;
+  outline: none;
+}

@@ -1,0 +1,75 @@
+footer {
+  background: #d1d1d1;
+  padding: 1rem 0rem;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 200px;
+}
+
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ── 푸터 텍스트 섹션 ── */
+.footer-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #333;
+}
+
+.footer-text h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.footer-text p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: grey;
+}
+
+/* ── 소셜 미디어 아이콘 섹션 ── */
+.footer-icons {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.footer-icon {
+  width: 36px;
+  height: 36px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #fff;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+/* width: 100%;
+height: 10rem;
+object-fit: cover;
+border-radius: 0.5rem 0.5rem 0 0;
+margin-bottom: 0.5rem; */
+
+.store-intro-img {
+  width: 100%;
+  max-width: 400px;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 8px;
+}

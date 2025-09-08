@@ -1,0 +1,226 @@
+/* 전체 컨테이너 */
+.user-info-edit-container {
+  width: 700px;
+  margin: 30px auto;
+  padding-bottom: 50px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 1px 2px 30px rgba(0, 0, 0, 0.1);
+  font-family: Inter;
+}
+
+/* 헤더 */
+.edit-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 39px;
+}
+.edit-header h1 {
+  font-size: 30px;
+  font-weight: 800;
+  color: #0068ff;
+  margin-bottom: 5px;
+}
+.edit-subtext {
+  font-size: 15px;
+  color: #000;
+}
+
+/* 정보 섹션 */
+.info-section {
+  padding: 0 100px;
+}
+.label-text {
+  font-size: 15px;
+  color: #000;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+.static-field {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  background: #e8e8e8;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  color: #5b5b5b;
+  font-size: 18px;
+  user-select: none;
+}
+.select-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 30px;
+}
+.select-value-display {
+  flex: 1;
+  height: 40px;
+  border-radius: 10px;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center; /* 수직 가운데 정렬 */
+  padding-left: 20px;
+}
+
+/* 토글 섹션 */
+.toggle-section {
+  padding: 0 100px;
+}
+.select-list {
+  border-radius: 10px;
+  background: #e8e8e8;
+  margin-bottom: 20px;
+  padding: 2px 10px;
+}
+.select-list-none {
+  border-radius: 10px;
+  background: #e8e8e8;
+  padding: 2px 10px;
+}
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  margin: 5px 10px;
+}
+.toggle-label {
+  font-size: 14px;
+  color: #000;
+}
+.section {
+  border-bottom: 1px solid #d9d9d9;
+}
+.select-list-info {
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  font-size: 12px;
+  margin-top: 3px;
+  margin-bottom: 30px;
+}
+
+/* 학력 정보 */
+.grade-section {
+  padding: 0 100px;
+}
+.grade-input-field {
+  width: 70px;
+  height: 25px;
+  border-radius: 10px;
+  background: #fdfdfd;
+  border: none;
+  text-align: center;
+}
+.grade-input-field::-webkit-outer-spin-button,
+.grade-input-field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.grade-input-field {
+  -moz-appearance: textfield;
+}
+/* 소득 정보 */
+.income-section {
+  padding: 0 100px;
+  margin-bottom: 10px;
+}
+.dropdown-wrapper {
+  margin-bottom: 30px;
+}
+.dropdown-label {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.dropdown-select,
+.select-value {
+  width: 70px;
+  height: 28px;
+  padding: 0 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 10px;
+  background: #fdfdfd;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='%23666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 18px 18px;
+  cursor: pointer;
+  outline: none;
+}
+
+/* 하단 버튼 */
+.user-info-footer {
+  margin-top: 0px;
+  padding: 0px 100px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.cancel-btn {
+  width: 143px;
+  height: 40px;
+  border-radius: 10px;
+  background: #bfbfbf;
+  border: none;
+  color: white;
+  font-size: 15px;
+}
+.check-btn {
+  flex: 1;
+  border-radius: 10px;
+  background: #0068ff;
+  border: none;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* 비밀번호 수정 텍스트 */
+.password-edit {
+  color: #0000009a;
+  font-size: 12px;
+  text-decoration: underline;
+  text-align: right;
+  margin-top: 10px;
+  cursor: pointer;
+  margin-right: 105px;
+}
+.select-btn {
+  width: 64px;
+  height: 39px;
+  border-radius: 10px;
+  border: 1.5px solid #b2b2b2;
+  background: none;
+  font-weight: 600;
+  color: #b2b2b2;
+  transition: 0.3s ease-out;
+}
+
+.select-btn:hover {
+  transform: 0.3s;
+  background: #0068ff;
+  color: #ffff;
+  border: none;
+}
+.select-wrapper .signup-dropdown-select {
+  border: 1.5px solid #b2b2b2;
+  height: 39px;
+  border-radius: 10px;
+  color: #b2b2b2;
+  font-weight: 600;
+  text-align: center;
+  transition: 0.3s;
+}
+.select-wrapper .signup-dropdown-select.active {
+  color: black;
+  border: 1.5px solid black;
+}

@@ -1,0 +1,153 @@
+.searchbar-wrapper {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  margin: 0 auto;
+  z-index: 99999;
+}
+.search {
+  width: 700px;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  border: 2px solid #89b8fa;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 3px 3px 40px 0px rgba(0, 104, 255, 0.25);
+  padding-top: 25px;
+  overflow: hidden;
+  transition: 1s ease;
+}
+.search.action {
+  padding-top: 0;
+  min-height: 128.5px;
+  width: 900px;
+}
+.search.custom {
+  margin-top: 25px;
+  top: 0;
+  padding-top: 0;
+  width: 900px;
+  box-shadow: 3px 3px 20px 0px rgba(0, 104, 255, 0.2);
+  padding-bottom: 4px;
+  transition: 1s ease;
+}
+.search.custom.action {
+  padding-top: 0;
+  min-height: 70px;
+  width: 900px;
+}
+.search h1 {
+  color: #0068ff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 23px;
+  font-weight: 700;
+}
+.search h2 {
+  color: rgba(0, 0, 0, 0.29);
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.searchbox-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  padding: 0 80px;
+}
+.searchbox-wrapper.action {
+  padding: 0 20px;
+}
+.searchbar {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-height: 50px;
+  font-size: 32px;
+  font-weight: 500;
+  color: #000000ac;
+  margin-bottom: 5px;
+  border: none;
+  border-bottom: 2px solid #d1d1d1;
+  outline: none;
+  transition: 0.5s ease;
+  margin-left: 20px;
+  padding-top: 8px;
+}
+.search.custom .searchbar {
+  border: none;
+  margin: 0;
+}
+.search-btn {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  opacity: 0.3;
+}
+.searchbar.action {
+  margin-left: 0;
+  border: none;
+}
+
+.searchbar:focus::placeholder {
+  color: transparent;
+}
+.searchbar::placeholder {
+  color: #d1d1d18e;
+  font-size: 32px;
+  /* font-weight: 100; */
+  text-align: center;
+}
+
+.suggestion-list {
+  margin: 0.2% auto;
+  width: 100%;
+  background-color: #fff;
+  border: none;
+  border-bottom: 20px;
+  overflow-y: auto;
+  transition: 0.5s ease;
+}
+.suggestion-header {
+  padding: 6px 25px;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+  background-color: #f9f9f9;
+  color: #666;
+  font-size: 14px;
+}
+
+.keyword-name {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 25px;
+  font-size: 15px;
+  color: #333;
+}
+
+.delete-keyword {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 18px;
+  padding-right: 30px;
+}
+
+.no-recent {
+  padding: 10px;
+  color: #aaa;
+  font-size: 14px;
+  text-align: center;
+}
+.suggestion-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
