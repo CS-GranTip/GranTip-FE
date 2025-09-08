@@ -4,6 +4,8 @@ import "./MyPage.css";
 import { useNavigate } from "react-router-dom";
 import api from "../utils/axios";
 import DeleteUser from "../components/Modal/DeleteUser";
+import axios from "axios";
+import { BASE_URL } from "../api/config";
 const MyPage = ({ setIsLogged }) => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
@@ -20,19 +22,28 @@ const MyPage = ({ setIsLogged }) => {
         if (userRes.data.success && likeRes.data.success) {
           setUserInfo(userRes.data.result);
           setLikeInfo(likeRes.data.result.content);
-        } else {
-          alert("유저 정보를 찾을 수 없습니다.");
-          setIsLogged(false);
-          navigate("/");
         }
       } catch (error) {
-        alert("서버 오류.");
         // navigate("/");
       }
     };
     fetchUserInfo();
   }, []);
   if (!userInfo) return <div>로딩 중...</div>;
+
+  const handleClick = async () => {
+    try {
+      // refresh 전용 호출 (api는 interceptor 붙어 있으니까 axios 기본 사용)
+      const res = await axios.post(`${BASE_URL}/auth/reissue`, null, {
+        withCredentials: true,
+        headers: { "Content-Type": "application/json" },
+      });
+      console.log("reissue 응답:", res.data, res.headers);
+    } catch (err) {
+      console.error("reissue 실패:", err);
+    }
+  };
+
   return (
     <div className="my-page">
       <div className="user-header">
@@ -105,6 +116,7 @@ const MyPage = ({ setIsLogged }) => {
           setIsLogged={setIsLogged}
         />
       )}
+      <button onClick={handleClick}>재발급</button>
     </div>
   );
 };

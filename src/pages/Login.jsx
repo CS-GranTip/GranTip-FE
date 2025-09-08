@@ -51,6 +51,7 @@ const Login = ({ setIsLoggedIn }) => {
       );
 
       const { success, message, result } = res.data;
+      console.log(res.data);
 
       if (!success) {
         alert(message || "로그인 실패\n이메일 및 비밀번호를 확인해주세요");
@@ -58,6 +59,7 @@ const Login = ({ setIsLoggedIn }) => {
       }
       const accessToken = res.headers["authorization"];
       localStorage.setItem("accessToken", accessToken);
+      console.log(accessToken);
       setIsLoggedIn(true);
       navigate("/");
     } catch (error) {
@@ -69,7 +71,32 @@ const Login = ({ setIsLoggedIn }) => {
   const signupProcess = () => {
     navigate("/signup");
   };
-
+  const speedLoginProcess = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/auth/login`,
+        {
+          email: "lgm04@naver.com",
+          password: "@newddong868123",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      const accessToken = res.headers["authorization"];
+      localStorage.setItem("accessToken", accessToken);
+      console.log(accessToken);
+      setIsLoggedIn(true);
+      navigate("/");
+    } catch (error) {
+      console.error("❌ 로그인 오류:", error.message);
+      alert("서버 오류입니다. 잠시 후 다시 시도해주세요.", error.message);
+    }
+  };
   return (
     <div className="page-wrapper">
       <div className="page">
@@ -113,6 +140,7 @@ const Login = ({ setIsLoggedIn }) => {
           <div className="login-signup-btn" onClick={signupProcess}>
             회원가입
           </div>
+          <button onClick={speedLoginProcess}>바로로그인</button>
         </div>
       </div>
     </div>

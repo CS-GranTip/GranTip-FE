@@ -10,6 +10,7 @@ const EditPW = () => {
   const [reRePassword, setReRePassword] = useState("");
   const [email, setEmail] = useState("");
   const [step, setStep] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   useEffect(() => {
     const editPassword = async () => {
       try {
@@ -28,6 +29,7 @@ const EditPW = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+  const isFormPw = rePassword === reRePassword && rePassword.length > 7;
   const isFormValid = password.length > 7;
   const loginProcess = async (e) => {
     e.preventDefault();
@@ -39,7 +41,11 @@ const EditPW = () => {
       console.log(res.data);
       const { success, message, result } = res.data;
       if (success) {
-        setStep(2);
+        setIsTransitioning(true);
+        setTimeout(() => {
+          setStep(2);
+          setIsTransitioning(false);
+        }, 300); // CSS transition 시간과 맞춤
       } else {
         alert(message || "로그인 실패\n이메일 및 비밀번호를 확인해주세요");
       }
@@ -68,67 +74,67 @@ const EditPW = () => {
   return (
     <div className="page-wrapper">
       <div className="signup-page">
-        {step === 1 && (
-          <div>
-            <h1>
-              비밀번호 변경을 위해
-              <br /> 다시 로그인해주세요
-            </h1>
+        <div className={`signup-input ${isTransitioning ? "fade-out" : ""}`}>
+          {step === 1 && (
             <div>
-              <div className="login-email">* 이메일</div>
-              <div className="login-email-input" type="text">
-                {email}
+              <h1>
+                비밀번호 변경을 위해
+                <br /> 다시 로그인해주세요
+              </h1>
+              <div>
+                <div className="login-email">* 이메일</div>
+                <div className="login-email-input" type="text">
+                  {email}
+                </div>
+                <div className="login-pass">* 비밀번호</div>
+                <input
+                  className="login-pass-input"
+                  type="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
               </div>
-              <div className="login-pass">* 비밀번호</div>
-              <input
-                className="login-pass-input"
-                type="password"
-                value={password}
-                onChange={handlePasswordChange}
-              />
+              <button
+                className={`login-btn ${isFormValid ? "active" : ""}`}
+                disabled={!isFormValid}
+                onClick={loginProcess}
+              >
+                다음으로
+              </button>
             </div>
-            <button
-              className={`login-btn ${isFormValid ? "active" : ""}`}
-              disabled={!isFormValid}
-              onClick={loginProcess}
-            >
-              다음으로
-            </button>
-          </div>
-        )}
-        {step === 2 && (
-          <>
-            <h1>
-              변경할 비밀번호를
-              <br /> 입력해주세요
-            </h1>
-            <div>
-              <div className="login-email">* 비밀번호</div>
-              <input
-                className="login-pass-input"
-                type="password"
-                value={rePassword}
-                onChange={(e) => setRePassword(e.target.value)}
-              />
-              <div className="login-pass">* 비밀번호 확인</div>
-              <input
-                className="login-pass-input"
-                type="password"
-                value={reRePassword}
-                onChange={(e) => setReRePassword(e.target.value)}
-              />
-            </div>
-            <button
-              className={`login-btn ${
-                rePassword === reRePassword && rePassword > 7 ? "active" : ""
-              }`}
-              disabled={!isFormValid}
-              onClick={editPassword}
-            >
-              변경하기
-            </button>
-          </>
-        )}
+          )}
+          {step === 2 && (
+            <>
+              <h1>
+                변경할 비밀번호를
+                <br /> 입력해주세요
+              </h1>
+              <div>
+                <div className="login-email">* 비밀번호</div>
+                <input
+                  className="login-pass-input"
+                  type="password"
+                  value={rePassword}
+                  onChange={(e) => setRePassword(e.target.value)}
+                />
+                <div className="login-pass">* 비밀번호 확인</div>
+                <input
+                  className="login-pass-input"
+                  type="password"
+                  value={reRePassword}
+                  onChange={(e) => setReRePassword(e.target.value)}
+                />
+              </div>
+              <button
+                className={`login-btn ${isFormPw ? "active" : ""}`}
+                disabled={!isFormPw}
+                onClick={editPassword}
+              >
+                변경하기
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
