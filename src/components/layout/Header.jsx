@@ -15,8 +15,11 @@ const Header = ({ setSearchText, isLoggedIn, setLogin }) => {
         navigate("/");
         setLogin(false);
         localStorage.removeItem("accessToken");
+        navigate(0);
       } else {
         console.log(res.data);
+        localStorage.setItem("accessToken", "????");
+        navigate(0);
       }
     } catch (err) {
       console.error(err);
