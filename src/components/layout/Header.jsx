@@ -2,7 +2,9 @@ import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import api from "../../utils/axios";
 import { useEffect } from "react";
-const Header = ({ setSearchText, isLoggedIn, setLogin }) => {
+import { useAuthStore } from "../../utils/axios";
+const Header = ({ setSearchText }) => {
+  const { isLoggedIn, logout } = useAuthStore();
   const navigate = useNavigate();
   const homeHandler = () => {
     navigate("/");
@@ -12,12 +14,10 @@ const Header = ({ setSearchText, isLoggedIn, setLogin }) => {
     try {
       const res = await api.post("/auth/logout");
       if (res.data.success) {
+        logout();
         navigate("/");
-        setLogin(false);
-        localStorage.removeItem("accessToken");
         navigate(0);
       } else {
-        console.log(res.data);
         localStorage.setItem("accessToken", "????");
         navigate(0);
       }
@@ -25,7 +25,6 @@ const Header = ({ setSearchText, isLoggedIn, setLogin }) => {
       console.error(err);
     }
   };
-  useEffect(() => {});
   return (
     <div className="header-wrapper">
       <div className="header-inner">

@@ -30,7 +30,7 @@ function AppContent() {
       <AnimatePresence>
         {!hideHeader && (
           <PageTransitionWrapper>
-            <Header setSearchText={setInputText} isLoggedIn={isLoggedIn} />
+            <Header setSearchText={setInputText} />
           </PageTransitionWrapper>
         )}
       </AnimatePresence>
