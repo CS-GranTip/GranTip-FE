@@ -3,19 +3,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../api/config.js";
-const Login = ({ setIsLoggedIn }) => {
+import { useAuthStore } from "../utils/axios.js";
+
+const Login = () => {
+  const { login } = useAuthStore();
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const handleEmailChange = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-  };
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isFormValid = emailRegex.test(email) && password.length > 7;
@@ -28,75 +24,44 @@ const Login = ({ setIsLoggedIn }) => {
       setEmailError("이메일 형식으로 작성해주세요");
     }
   };
+  const handleEmailFocus = () => setIsFocused(true);
 
-  const handleEmailFocus = () => {
-    setIsFocused(true);
-  };
-
-  const loginProcess = async (e) => {
-    e.preventDefault();
+  const handleLogin = async (loginData) => {
     try {
-      const res = await axios.post(
-        `${BASE_URL}/auth/login`,
-        {
-          email: email,
-          password: password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
-
-      const { success, message, result } = res.data;
-      console.log(res.data);
-
+      const res = await axios.post(`${BASE_URL}/auth/login`, loginData, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      const { success, message } = res.data;
       if (!success) {
-        alert(message || "로그인 실패\n이메일 및 비밀번호를 확인해주세요");
-        return;
+        alert(message || "로그인 실패 \n 이메일 및 비밀번호를 확인해주세요");
       }
       const accessToken = res.headers["authorization"];
-      localStorage.setItem("accessToken", accessToken);
-      console.log(accessToken);
-      setIsLoggedIn(true);
+      if (!accessToken) {
+        console.error("토큰이 헤더에 없습니다.");
+        return;
+      }
+      login(accessToken);
       navigate("/");
     } catch (error) {
-      console.error("❌ 로그인 오류:", error.message);
-      alert("서버 오류입니다. 잠시 후 다시 시도해주세요.", error.message);
+      console.error("로그인 오류", error.message);
+      alert("서버 오류입니다. 잠시 후 다시 시도해주세요");
     }
   };
 
-  const signupProcess = () => {
-    navigate("/signup");
-  };
-  const speedLoginProcess = async (e) => {
+  const loginProcess = (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post(
-        `${BASE_URL}/auth/login`,
-        {
-          email: "lgm04@naver.com",
-          password: "@newddong868123",
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
-      const accessToken = res.headers["authorization"];
-      localStorage.setItem("accessToken", accessToken);
-      console.log(accessToken);
-      setIsLoggedIn(true);
-      navigate("/");
-    } catch (error) {
-      console.error("❌ 로그인 오류:", error.message);
-      alert("서버 오류입니다. 잠시 후 다시 시도해주세요.", error.message);
-    }
+    handleLogin({ email, password });
   };
+  const speedLoginProcess = (e) => {
+    e.preventDefault();
+    handleLogin({
+      email: "lgm04@naver.com",
+      password: "@newddong868123",
+    });
+  };
+  const signupProcess = () => navigate("/signup");
+
   return (
     <div className="page-wrapper">
       <div className="page">
@@ -107,7 +72,7 @@ const Login = ({ setIsLoggedIn }) => {
             className="login-email-input"
             type="text"
             value={email}
-            onChange={handleEmailChange}
+            onChange={(e) => setEmail(e.target.value)}
             onFocus={handleEmailFocus}
             onBlur={handleEmailBlur}
           />
@@ -125,7 +90,7 @@ const Login = ({ setIsLoggedIn }) => {
             className="login-pass-input"
             type="password"
             value={password}
-            onChange={handlePasswordChange}
+            onChange={(e) => setPassword(e.target.value)}
           ></input>
         </div>
         <button

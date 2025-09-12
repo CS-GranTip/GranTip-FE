@@ -18,28 +18,19 @@ import ScrollToTop from "./utils/ScrollToTop";
 import LikeList from "./pages/LikeList";
 import TipMore from "./pages/TipMore.jsx";
 import EditPW from "./components/Modal/EditPW.jsx";
+import { useAuthStore } from "./utils/axios.js";
 function AppContent() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inputText, setInputText] = useState("");
   const location = useLocation();
   const hideHeaderRoutes = ["/login", "/signup", "/update-password"];
   const hideHeader = hideHeaderRoutes.includes(location.pathname);
-
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    setIsLoggedIn(token !== null && token !== "undefined");
-  }, []);
-
+  const { isLoggedIn } = useAuthStore();
   return (
     <>
       <AnimatePresence>
         {!hideHeader && (
           <PageTransitionWrapper>
-            <Header
-              setSearchText={setInputText}
-              isLoggedIn={isLoggedIn}
-              setLogin={setIsLoggedIn}
-            />
+            <Header setSearchText={setInputText} isLoggedIn={isLoggedIn} />
           </PageTransitionWrapper>
         )}
       </AnimatePresence>
@@ -58,7 +49,7 @@ function AppContent() {
             path="/login"
             element={
               <PageTransitionWrapper>
-                <Login setIsLoggedIn={setIsLoggedIn} />
+                <Login />
               </PageTransitionWrapper>
             }
           />
@@ -75,7 +66,7 @@ function AppContent() {
             element={
               <PageTransitionWrapper>
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <MyPage setIsLoggedIn={setIsLoggedIn} />
+                  <MyPage />
                 </ProtectedRoute>
               </PageTransitionWrapper>
             }

@@ -6,7 +6,7 @@ import api from "../utils/axios";
 import DeleteUser from "../components/Modal/DeleteUser";
 import axios from "axios";
 import { BASE_URL } from "../api/config";
-const MyPage = ({ setIsLogged }) => {
+const MyPage = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
   const [likeInfo, setLikeInfo] = useState([]);
@@ -113,7 +113,6 @@ const MyPage = ({ setIsLogged }) => {
         <DeleteUser
           username={userInfo.username}
           onClose={() => setDeleteUser(false)}
-          setIsLogged={setIsLogged}
         />
       )}
       <button onClick={handleClick}>재발급</button>

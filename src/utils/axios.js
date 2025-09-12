@@ -1,16 +1,56 @@
 import axios from "axios";
 import { BASE_URL } from "../api/config";
+import { create } from "zustand";
+import { jwtDecode } from "jwt-decode";
 
+//----------------
+// Zustand Auth Store
+//----------------
+export const useAuthStore = create((set) => ({
+  isLoggedIn: !!localStorage.getItem("accessToken"),
+
+  login: (token) => {
+    localStorage.setItem("accessToken", token);
+    set({ isLoggedIn: true });
+  },
+  logout: () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    set({ isLoggedIn: false });
+  },
+}));
+
+//----------------
+// JWT 만료 체크
+//----------------
+function isTokenExpired(token) {
+  try {
+    const { exp } = jwtDecode(token);
+    return Date.now() >= exp * 1000;
+  } catch {
+    return true;
+  }
+}
+
+//----------------
+// Axios 인스턴스
+//----------------
 const api = axios.create({
   baseURL: BASE_URL,
-  withCredentials: true, // ← refreshToken이 쿠키에 있을 경우
+  withCredentials: true, // refreshToken 쿠키
 });
 
-// accessToken 붙이기
+//----------------
+// Request Interceptor
+//----------------
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("accessToken");
     if (token) {
+      if (isTokenExpired(token)) {
+        useAuthStore.getState().logout();
+        throw new Error("토큰 만료");
+      }
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -19,7 +59,9 @@ api.interceptors.request.use(
 );
 // 토큰 확인 완료 2025/09/08
 
-// 401 → accessToken 재발급 시도
+//----------------
+// Response Interceptor
+//----------------
 let isRefreshing = false;
 let failedQueue = [];
 
@@ -30,54 +72,40 @@ const processQueue = (error, token = null) => {
   });
   failedQueue = [];
 };
-// 401 처리
+// 401 => 재발급 시도 및 원본 요청 재 처리
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    console.log("인터셉터 에러 잡힘:", error.response?.status);
-    console.log("원요청:", error.config);
     const originalRequest = error.config || {};
 
     // 1. accessToken 만료(401) + refresh 시도 안 한 요청이면
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      console.log("👉 401 조건 진입");
       if (isRefreshing) {
-        console.log("토큰");
-        // 이미 리프레시 중이면 기다림
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
         })
           .then((newToken) => {
-            originalRequest.headers = originalRequest.headers || {};
             originalRequest.headers.Authorization = `Bearer ${newToken}`;
             return api(originalRequest);
           })
           .catch((err) => Promise.reject(err));
       }
-
       isRefreshing = true;
-      console.log(isRefreshing);
       try {
-        // refresh 전용 인스턴스
-        console.log("🔵 /auth/reissue 요청 시작");
+        // refresh 요청
         const res = await axios.post(`${BASE_URL}/auth/reissue`, null, {
           headers: {
             "Content-Type": "application/json",
           },
           withCredentials: true,
         });
-        const { success, message, result } = res.data;
-        console.log(res);
-        console.log("🟢 /auth/reissue 응답:", res.status);
         // raw 에 토큰 저장
         // 토큰 꺼내기
         const raw =
           res.headers["authorization"] || res.headers["Authorization"];
         if (!raw) {
-          console.error("토큰이 응답 헤더에 없음:", res.headers);
-          processQueue(new Error("토큰 재발급 실패"), null);
-          return Promise.reject(new Error("토큰재발급 실패"));
+          throw new Error("토큰 재발급 실패 : 응답 헤더 없음");
         }
 
         // "Bearer " 접두사 제거
@@ -94,14 +122,12 @@ api.interceptors.response.use(
         // 대기중이던 요청 처리
         processQueue(null, newToken);
 
-        console.log("토큰 재발급 완료:", newToken);
         return api(originalRequest);
       } catch (refreshErr) {
         processQueue(refreshErr, null);
-        localStorage.removeItem("accessToken");
+        useAuthStore.getState().logout();
         // 세션 만료 알림 추가
         alert("세션이 만료되었습니다. 다시 로그인 해주세요.");
-        window.location.href = "/login";
         return Promise.reject(refreshErr);
       } finally {
         isRefreshing = false;
