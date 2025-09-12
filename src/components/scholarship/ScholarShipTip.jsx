@@ -5,6 +5,8 @@ import api from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 const ScholarshipTip = () => {
   const [scholarTip, setScholarTip] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const nav = useNavigate();
   useEffect(() => {
     const fetchScholarships = async () => {
@@ -19,14 +21,16 @@ const ScholarshipTip = () => {
           setScholarTip(res.data.result.content);
         }
       } catch (err) {
-        console.error(err);
-        alert("장학금 추천 에러");
+        setError(err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchScholarships();
   }, []);
-
+  if (loading) return <div>장학금 추천 중...</div>;
+  if (error) return <div>장학금 추천 중 에러 발생 새로고침 해주세요</div>;
   return (
     <div className="tip">
       <h1>🎓GranTip이 추천하는 맞춤 장학금</h1>
