@@ -53,13 +53,6 @@ const Login = () => {
     e.preventDefault();
     handleLogin({ email, password });
   };
-  const speedLoginProcess = (e) => {
-    e.preventDefault();
-    handleLogin({
-      email: "lgm04@naver.com",
-      password: "@newddong868123",
-    });
-  };
   const signupProcess = () => navigate("/signup");
 
   return (
@@ -105,7 +98,6 @@ const Login = () => {
           <div className="login-signup-btn" onClick={signupProcess}>
             회원가입
           </div>
-          <button onClick={speedLoginProcess}>바로로그인</button>
         </div>
       </div>
     </div>
